@@ -33,7 +33,7 @@ jobs:
 
     # 프로젝트 압축
     - name: Make zip file
-      run: zip -r ./mypetlife-deploy.zip .
+      run: zip -r ./mypetlife-deploy.zip ./app
       shell: bash
     
     # AWS 권한 확인

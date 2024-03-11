@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROJECT_ROOT="/home/ubuntu/app"
+PROJECT_ROOT="/home/ec2-user/app"
 JAR_FILE="$PROJECT_ROOT/build/libs/mypetlife-deploy.jar"
 
 APP_LOG="$PROJECT_ROOT/application.log"

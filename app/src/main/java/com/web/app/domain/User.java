@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-@Table(name = "user")
+@Table(name = "user", indexes = {@Index(name = "user_index",columnList = "user_id")})
 @Data
 public class User {
     @Id
@@ -22,6 +22,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleType role;
     private String profile;
+    private String nickname;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Likes> likeList = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

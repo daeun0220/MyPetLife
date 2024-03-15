@@ -1,5 +1,6 @@
 package com.web.app.domain;
 
+import com.web.app.dto.request.BoardRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Board {
     private String content;
     private LocalDate createDate;
     private LocalDate modifyDate;
+    private String writer;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -31,5 +33,10 @@ public class Board {
     private List<Comment> commentList = new ArrayList<>();
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Images> imageList = new ArrayList<>();
+    public void update(BoardRequestDto dto) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+        this.modifyDate = dto.getModifyDate();
+    }
 
 }

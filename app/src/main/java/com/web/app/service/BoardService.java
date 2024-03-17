@@ -4,14 +4,20 @@ package com.web.app.service;
 import com.web.app.domain.Board;
 import com.web.app.domain.User;
 import com.web.app.dto.request.BoardRequestDto;
+import com.web.app.dto.response.BoardDto;
 import com.web.app.dto.response.BoardResponseDto;
 import com.web.app.dto.response.ResultType;
 import com.web.app.repository.BoardRepository;
 import com.web.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -48,4 +54,10 @@ public class BoardService {
         boardRepository.delete(board);
         return ResultType.SUCCESS;
     }
+    /*
+    public List<BoardDto> searchAll(Pageable pageable, String title) {
+        return boardRepository.findBySearchOption(pageable, title);
+    }
+
+     */
 }

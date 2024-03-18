@@ -54,10 +54,11 @@ public class BoardService {
         boardRepository.delete(board);
         return ResultType.SUCCESS;
     }
-    /*
-    public List<BoardDto> searchAll(Pageable pageable, String title) {
-        return boardRepository.findBySearchOption(pageable, title);
+
+    public List<BoardResponseDto> searchMyBoard(Long userId) {
+        return boardRepository.findAllByUser(userId).stream()
+                .map(BoardResponseDto::from)
+                .collect(Collectors.toList());
     }
 
-     */
 }

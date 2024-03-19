@@ -2,7 +2,6 @@ package com.web.app.dto.response;
 
 import com.querydsl.core.annotations.QueryProjection;
 import com.web.app.domain.Board;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CommentCreateRequestDto {
     private String content;
-    private Long ticketId;
+    private Long boardId;
     private Long userId;
     private Long parentId;
 }

@@ -32,4 +32,13 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
+    public static Comment createComment(String content, Board board, User user, Comment parent) {
+        Comment comment = new Comment();
+        comment.content = content;
+        comment.board = board;
+        comment.user = user;
+        comment.parent = parent;
+        comment.deleted = false;
+        return comment;
+    }
 }

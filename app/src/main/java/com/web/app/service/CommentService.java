@@ -42,6 +42,16 @@ public class CommentService {
         return convertNestedStructure(commentRepository.findByBoardId(boardId));
     }
 
+    @Transactional
+    public void deleteComment(Long commentId) {
+        Comment comment = commentRepository.findCommentByIdWithParent(commentId).orElseThrow(() -> new IllegalArgumentException(("댓글이 존재하지 않습니다.")));
+        if(comment.getChildren().size() != 0) {
+            comment.setDeleted(true);
+        } else {
+            commentRepository.delete(getDeletableAncestorComment(comment));
+        }
+    }
+
     private List<CommentDto> convertNestedStructure(List<Comment> comments) {
         List<CommentDto> result = new ArrayList<>();
         Map<Long, CommentDto> map = new HashMap<>();
@@ -52,5 +62,11 @@ public class CommentService {
             else result.add(dto);
         });
         return result;
+    }
+    private Comment getDeletableAncestorComment(Comment comment) {
+        Comment parent = comment.getParent();
+        if(parent != null && parent.getChildren().size() == 1 && parent.isDeleted() == true)
+            return getDeletableAncestorComment(parent);
+        return comment;
     }
 }

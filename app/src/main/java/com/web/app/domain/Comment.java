@@ -20,6 +20,7 @@ public class Comment {
     private Long id;
     private String content;
     private LocalDate createDate;
+    @Setter
     private boolean deleted;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")

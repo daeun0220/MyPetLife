@@ -2,6 +2,7 @@ package com.web.app.controller;
 
 import com.web.app.dto.request.CommentCreateRequestDto;
 import com.web.app.dto.response.CommentDto;
+import com.web.app.dto.response.ResultType;
 import com.web.app.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,11 @@ public class CommentController {
     @GetMapping(value = "/comments/{boardId}")
     public List<CommentDto> findAllCommentsByTicketId(@PathVariable("boardId") Long boardId) {
         return commentService.findCommentsByBoardId(boardId);
+    }
+    @DeleteMapping(value = "/comments/{commentId}")
+    public ResultType deleteComment(@PathVariable("commentId") Long commentId) {
+        commentService.deleteComment(commentId);
+        return ResultType.SUCCESS;
     }
 
 }

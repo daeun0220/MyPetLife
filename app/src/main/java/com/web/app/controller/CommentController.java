@@ -5,10 +5,9 @@ import com.web.app.dto.response.CommentDto;
 import com.web.app.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/mypetlife")
@@ -19,6 +18,10 @@ public class CommentController {
     @PostMapping("/comments")
     public CommentDto createComment(@RequestBody CommentCreateRequestDto requestDto) {
         return commentService.createComment(requestDto);
+    }
+    @GetMapping(value = "/comments/{boardId}")
+    public List<CommentDto> findAllCommentsByTicketId(@PathVariable("boardId") Long boardId) {
+        return commentService.findCommentsByBoardId(boardId);
     }
 
 }
